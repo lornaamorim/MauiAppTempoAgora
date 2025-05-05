@@ -91,7 +91,7 @@ namespace MauiAppTempoAgora
             }
             catch(FeatureNotEnabledException fneEx)
             {
-                await DisplayAlert("Erro: Localização desabilitada", fneEx.Message, "OK");
+                await DisplayAlert("Erro: Localização Desabilitada", fneEx.Message, "OK");
             }
             catch (PermissionException fneEx)
             {
