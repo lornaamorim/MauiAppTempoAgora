@@ -29,15 +29,15 @@ namespace MauiAppTempoAgora
                                          $"Nascer do Sol: {t.sunrise} \n" +
                                          $"Por do Sol: {t.sunset} \n" +
                                          $"Tempo Máx: {t.sunrise} \n" +
-                                         $"Tempo Min: {t.sunrise} \n" +;
+                                         $"Tempo Min: {t.sunrise} \n";
 
-                        lbl_rest.Text = dados_previsao;
+                        lbl_res.Text = dados_previsao;
 
                         string mapa = $"https://embed.windy.com/embed.html?" +
                                       $"type=map&location=coordinate&metricRain=m&metricTemp=°C" +
                                       $"&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface" +
                                       $"&lat={t.lat.ToString().Replace(",", ".")}&lon=" +
-                                      $"{t.lon.ToString().Replace(","，".")}";
+                                      $"{t.lon.ToString().Replace(",", ".")}";
 
                         wv_mapa.Source = mapa;
 
@@ -50,7 +50,7 @@ namespace MauiAppTempoAgora
 
                 } else
                 {
-                    lbl_rest.Text = "Preencha a cidade";
+                    lbl_res.Text = "Preencha a cidade";
                 }
             } catch (Exception ex)
               {
@@ -58,7 +58,7 @@ namespace MauiAppTempoAgora
               }
 
             }
-        }
+        
 
         private async void Button_Clicked_Localizacao(object sender, EventArgs e)
         {
@@ -85,24 +85,25 @@ namespace MauiAppTempoAgora
                     lbl_coords.Text = "Nenhuma Localização";
                 }
             }
-            catch(FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException fnsEx)
             {
                 await DisplayAlert("Erro: Dispositivo não Suporta", fnsEx.Message, "OK");
             }
-            catch(FeatureNotEnabledException fneEx)
+            catch (FeatureNotEnabledException fneEx)
             {
                 await DisplayAlert("Erro: Localização Desabilitada", fneEx.Message, "OK");
             }
-            catch (PermissionException fneEx)
+            catch (PermissionException pEx)
             {
                 await DisplayAlert("Erro: Permissão da Localização", pEx.Message, "OK");
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Erro", ex.Message, "OK");
-            }
+            } 
+        }
 
-            Private async void GetCidade(double lat, double lon)
+            private async void GetCidade(double lat, double lon)
             {
                 try
                 {

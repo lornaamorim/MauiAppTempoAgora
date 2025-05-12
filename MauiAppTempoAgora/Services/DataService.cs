@@ -4,8 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Java.Interop;
+
 using MauiAppTempoAgora.Models;
+using Newtonsoft.Json.Linq;
+
+//using Java.Interop;
 
 namespace MauiAppTempoAgora.Services
 {
@@ -16,7 +19,7 @@ namespace MauiAppTempoAgora.Services
             Tempo? t = null;
 
             string chave = "6135072afe7f6cec1537d5cb08a5a1a2";
-             
+
             string url = $"https://api.openweathermap.org/data/2.5/weather?" +
                          $"q={cidade}&units=metric&appid={chave}";
 
@@ -24,7 +27,7 @@ namespace MauiAppTempoAgora.Services
             {
                 HttpResponseMessage resp = await client.GetAsync(url);
 
-                if(resp.IsSuccessStatusCode)
+                if (resp.IsSuccessStatusCode)
                 {
                     string json = await resp.Content.ReadAsStringAsync();
 
@@ -48,9 +51,11 @@ namespace MauiAppTempoAgora.Services
                         sunset = sunset.ToString(),
 
                     }; //Fecha obj do Tempo
-            } //Fecha if se o status do servidor foi de sucesso
-        } // Fecha laço using
+                } //Fecha if se o status do servidor foi de sucesso
+            } // Fecha laço using
 
             return t;
+        }
     }
 }
+

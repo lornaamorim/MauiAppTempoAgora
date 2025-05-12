@@ -5,7 +5,7 @@
 
     <ScrollView>
         <VerticalStackLayout
-           Padding="=30,0"
+           Padding="30,0"
            Spacing="25">
 
             <Button Text="Minha Localização" Clicked="Button_Clicked_Localizacao" />
